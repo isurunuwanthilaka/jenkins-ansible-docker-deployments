@@ -1,0 +1,5 @@
+[dev1]
+<dev1-ip> ansible_user=root
+
+[dev2]
+<dev2-ip> ansible_user=root
