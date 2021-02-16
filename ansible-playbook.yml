@@ -1,0 +1,21 @@
+---
+- hosts: "{{ENV}}"
+  vars_files:
+    - "/home/src/ansible-scripts/{{ENV}}.yml"
+  become: True
+  tasks:
+    - name: Install python pip
+      yum:
+        name: python-pip
+        state: present
+    - name: Install docker-py python module
+      pip:
+        name: docker-py
+        state: present
+    - name: Start the Hello service
+      docker_container:
+        name: hello
+        image: "<ip>:5000/hello:{{TAG}}"
+        state: started
+        published_ports:
+          - "0.0.0.0:{{hello.port}}:{{hello.port}}"
