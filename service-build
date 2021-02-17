@@ -16,7 +16,17 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git branch: "${params.BRANCH}" , credentialsId: 'bitbucket', url: 'https://isurunuwanthilaka@bitbucket.org/isurunuwanthilaka/hello-world'
+                script{
+                    if (params.SERVICE == 'hello1') {
+                        source = "hello-world"
+                    } else if (params.SERVICE == 'hello2') {
+                        source = "hello-world2"
+                    }else{
+                        source = "hello-world"
+                    }
+                }
+                
+                git branch: "${params.BRANCH}" , credentialsId: 'bitbucket', url: "https://isurunuwanthilaka@bitbucket.org/isurunuwanthilaka/${source}"
                 
             }
         }
