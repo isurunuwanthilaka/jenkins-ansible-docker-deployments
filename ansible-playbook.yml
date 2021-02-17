@@ -12,10 +12,20 @@
       pip:
         name: docker-py
         state: present
-    - name: Start the Hello service
+    - name: Start the Hello1 service
       docker_container:
-        name: hello
-        image: "<ip>:5000/hello:{{TAG}}"
+        name: hello1
+        image: "<ip>:5000/hello1:{{TAG}}"
         state: started
         published_ports:
-          - "0.0.0.0:{{hello.port}}:{{hello.port}}"
+          - "0.0.0.0:{{hello1.port}}:{{hello1.port}}"
+      tags: hello1
+    - name: Start the Hello2 service
+      docker_container:
+        name: hello2
+        image: "<ip>:5000/hello2:{{TAG}}"
+        state: started
+        published_ports:
+          - "0.0.0.0:{{hello2.port}}:{{hello2.port}}"
+      tags: hello2
+
