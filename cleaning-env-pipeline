@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+    
+    parameters { 
+        choice(name: 'ENV', choices: ['dev1', 'dev2'], description: 'Environment to be cleaned')
+    }
+
+    stages {
+        
+        stage('Clean') {
+            steps {
+                ansiblePlaybook credentialsId: 'dev-server', disableHostKeyChecking: true, extras: "-e ENV=${params.ENV}", installation: 'ansible', inventory: '/home/src/ansible-scripts/inventory.inv', playbook: '/home/src/ansible-scripts/docker-clean-env.yml'
+            }
+        }
+    }
+}
