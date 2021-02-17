@@ -1,2 +1,4 @@
-hello:
-	port: 8082
+hello1:
+  port: 8082
+hello2:
+  port: 8083
