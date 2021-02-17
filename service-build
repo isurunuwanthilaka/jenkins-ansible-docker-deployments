@@ -1,3 +1,5 @@
+def source = "default"
+
 pipeline {
     agent any
     
@@ -18,14 +20,13 @@ pipeline {
             steps {
                 script{
                     if (params.SERVICE == 'hello1') {
-                        source = "hello-world"
+                        source = "hello-world1"
                     } else if (params.SERVICE == 'hello2') {
                         source = "hello-world2"
                     }else{
-                        source = "hello-world"
+                        source = "hello-world1"
                     }
                 }
-                
                 git branch: "${params.BRANCH}" , credentialsId: 'bitbucket', url: "https://isurunuwanthilaka@bitbucket.org/isurunuwanthilaka/${source}"
                 
             }
