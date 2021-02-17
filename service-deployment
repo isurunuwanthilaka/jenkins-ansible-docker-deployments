@@ -3,7 +3,7 @@ pipeline {
     
     parameters { 
         string(name: 'SERVICE', defaultValue: 'all', description: 'Service name')
-        string(name: 'DEPLOY_TO', defaultValue: 'dev2', description: 'Docker container deployment environment')
+        string(name: 'DEPLOY_TO', defaultValue: 'dev3', description: 'Docker container deployment environment')
         string(name: 'TAG', defaultValue: 'dev', description: 'Docker image tag')
     }
 
@@ -11,7 +11,7 @@ pipeline {
         
         stage('Deploy Docker Container') {
             steps {
-                ansiblePlaybook credentialsId: 'dev-server', disableHostKeyChecking: true, extras: "-e TAG=${params.TAG} -e ENV=${params.DEPLOY_TO}", installation: 'ansible', inventory: '/home/src/ansible-scripts/inventory.inv', playbook: '/home/src/ansible-scripts/docker-deployment.yml'
+                ansiblePlaybook credentialsId: 'dev-server', disableHostKeyChecking: true, extras: "-e TAG=${params.TAG} -e ENV=${params.DEPLOY_TO} --tags ${params.SERVICE}", installation: 'ansible', inventory: '/home/src/ansible-scripts/inventory.inv', playbook: '/home/src/ansible-scripts/docker-deployment.yml'
             }
         }
     }
