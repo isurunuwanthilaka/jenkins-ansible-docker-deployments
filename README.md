@@ -1,1 +1,1 @@
-# jenkins-ansible-docker-deployments
+# Docker container deployment with Jenkins and Ansible
