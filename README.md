@@ -16,7 +16,7 @@
 
 ### Deployment Architecture
 
-![alt_deploy_arch](./deployment-arch.png')
+![alt_deploy_arch](./deployment-arch.png)
 
 ### What we are going to do ?
 
